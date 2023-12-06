@@ -27,7 +27,6 @@ python translatevideo_douglas.py -region us-east-2 -inbucket translate-videos-dm
 ```
 A lista de linguagens disponíveis está ([aqui](https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html?icmpid=docs_console_unmapped))
 
-
 - Para gerar um arquivo de áudio em portugues use o arquivo de script translatevideo.py
 - A criação do video náo está funcionando (ver TODO no arquivo translatevideo.py)
 
