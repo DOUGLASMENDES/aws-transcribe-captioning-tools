@@ -4,12 +4,12 @@
 
 ## Douglas - Modo de Usar:
 
-- VÍDEOS NÃO PODEM TER MAIS QUE 10 MINUTOS (MELHORAR ISSO!) -> dividir video e fazer em sequencia, no final unir tudo
-
 - Baixe o vídeo do youtube no link: https://yt2k.com/en4
 - Coloque o vídeo na pasta srt 
 - Suba o video do youtube no s3://translate-videos-dmendes/
 - Inicie um terminal com a versão python 2.7 (via anaconda e pipenv shell)
+
+
 ```shell
 pip install pipenv
 ```
@@ -22,6 +22,8 @@ pipenv shell
 ```shell
 pipenv install -r requirements.txt
 ```
+
+
 - Execute o arquivo makevideo.bat ajustando os paremetros ou chame diretamente o script:
 ```shell
 python translatevideo_douglas.py -region us-east-2 -inbucket translate-videos-dmendes/ -infile nome_arquivo.mp4 -outbucket translate-videos-dmendes/ -outfilename subtitledVideo -outfiletype mp4 -inlang he-IL -outlang pt-BR

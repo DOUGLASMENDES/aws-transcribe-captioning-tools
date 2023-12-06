@@ -79,12 +79,29 @@ print( "\tStart Time: " + str(response["TranscriptionJob"]["CreationTime"]) )
 print( "\tEnd Time: "  + str(response["TranscriptionJob"]["CompletionTime"]) )
 print( "\tTranscript URI: " + str(response["TranscriptionJob"]["Transcript"]["TranscriptFileUri"]) )
 
+
+#----------------------------------------------------------------
 # Now get the transcript JSON from AWS Transcribe
 transcript = getTranscript( str(response["TranscriptionJob"]["Transcript"]["TranscriptFileUri"]) ) 
 # print( "\n==> Transcript: \n" + transcript)
 
+# Save transcript json to a local file:
+#json_filename = args.infile + '.json'
+#with open(json_filename, 'w') as file:
+#    json.dump(transcript, file, indent=4)
+
+#----------------------------------------------------------------
+#caminho_do_arquivo = 'videoplayback_parte5.mp4.json' #'asrOutput.json'
+#transcript = None
+#with open(caminho_do_arquivo, 'r') as arquivo:
+#    transcript = json.load(arquivo)
+#print( "\n==> Transcript: \n" + str(transcript))
+#----------------------------------------------------------------
+
+
 # Create the SRT File for the original transcript and write it out.  
 writeTranscriptToSRT( transcript, args.inlang, "subtitles-" + args.inlang + ".srt" )  
+
 # TODO: A LINHA ABAIXO ESTÁ COM ERRO (PROVAVALMENTE PRECISA PATH COMPLETO ARQUIVO SRT FILE, Ñ ESTÁ ASSIM)
 #createVideo( args.infile, "subtitles-en.srt", args.outfilename + "-" + args.inlang" + ." + args.outfiletype, "audio-" + args.inlang + ".mp3", True)
 
@@ -93,7 +110,7 @@ writeTranscriptToSRT( transcript, args.inlang, "subtitles-" + args.inlang + ".sr
 for lang in args.outlang:
 	writeTranslationToSRT(transcript, args.inlang, lang, "subtitles-" + lang + ".srt", args.region ) 	
 	
-	#Now that we have the subtitle files, let's create the audio track
+	#Now that we have the subtitle files, let's create the audio track (AWS Poly)
 	#createAudioTrackFromTranslation( args.region, transcript, args.inlang, lang, "audio-" + lang + ".mp3" )
 	
 	# Finally, create the composited video

@@ -99,7 +99,7 @@ def writeTranslationToSRT( transcript, sourceLangCode, targetLangCode, srtFileNa
 	#print( "\n\n==> Translation: " + str(translation))
 		
 	# Now create phrases from the translation
-	textToTranslate = unicode(translation["TranslatedText"])
+	textToTranslate = translation # unicode(translation["TranslatedText"])
 	phrases = getPhrasesFromTranslation( textToTranslate, targetLangCode )
 	writeSRT( phrases, srtFileName )
 	
@@ -163,8 +163,8 @@ def getPhrasesFromTranslation( translation, targetLangCode ):
 		# a different duration than the content, MoviePy will sometimes fail with unexpected errors while
 		# processing the subclip.   This is limiting it to something less than the total duration for our example
 		# however, you may need to modify or eliminate this line depending on your content.
-		if c == 30:
-			break
+		#if c == 30:
+		#	break
 			
 	return phrases
 	
@@ -254,7 +254,21 @@ def translateTranscript( transcript, sourceLangCode, targetLangCode, region ):
 
 	# pull out the transcript text and put it in the txt variable
 	txt = ts["results"]["transcripts"][0]["transcript"]
-		
+
+	# translates the text 25 phrases at a time:
+	phrases = txt.split(".")
+	translated_text = ""
+	for i in range(0, len(phrases), 25):
+		chunk = ". ".join(phrases[i:i+25]) + "."
+		response = callTranslateApi(chunk, sourceLangCode, targetLangCode, region)
+		translated_text += unicode(response["TranslatedText"]) + " "
+
+	translation = translated_text		
+	
+	return translation
+	
+
+def callTranslateApi(txt, sourceLangCode, targetLangCode, region):
 	#set up the Amazon Translate client
 	translate = boto3.client(service_name='translate', region_name=region, use_ssl=True)
 	
@@ -262,8 +276,11 @@ def translateTranscript( transcript, sourceLangCode, targetLangCode, region ):
 	# translated text
 	translation = translate.translate_text(Text=txt,SourceLanguageCode=sourceLangCode, TargetLanguageCode=targetLangCode)
 	
+	trans_filename = 'tranlation.json'
+	with open(trans_filename, 'w') as file:
+	    json.dumps(translation, file, indent=4)
+
 	return translation
-	
 	
 
 # ==================================================================================
