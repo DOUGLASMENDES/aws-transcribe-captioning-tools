@@ -129,6 +129,11 @@ def getVoiceId( targetLangCode ):
 		voiceId = "Penelope"
 	elif targetLangCode == "de":
 		voiceId = "Marlene"
+	elif targetLangCode == "pt-BR":
+		voiceId = "Vitoria"		
+		# outras disponíveis: Ricardo, Camila 
+		# https://us-east-2.console.aws.amazon.com/polly/home/SynthesizeSpeech
+		# https://docs.aws.amazon.com/polly/latest/dg/ntts-voices-main.html
 		
 	return voiceId
 	

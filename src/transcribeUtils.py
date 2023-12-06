@@ -41,7 +41,7 @@ import requests
 #                 mediaFile - the content to process (e.g. "myvideo.mp4")
 #
 # ==================================================================================
-def createTranscribeJob( region, bucket, mediaFile ):
+def createTranscribeJob( region, bucket, mediaFile, languageCode = "en-US" ):
 
 	# Set up the Transcribe client 
 	transcribe = boto3.client('transcribe')
@@ -53,11 +53,12 @@ def createTranscribeJob( region, bucket, mediaFile ):
 	
 	# Use the uuid functionality to generate a unique job name.  Otherwise, the Transcribe service will return an error
 	response = transcribe.start_transcription_job( TranscriptionJobName="transcribe_" + uuid.uuid4().hex + "_" + mediaFile , \
-		LanguageCode = "en-US", \
+		LanguageCode = languageCode, \
 		MediaFormat = "mp4", \
-		Media = { "MediaFileUri" : mediaUri }, \
-		Settings = { "VocabularyName" : "MyVocabulary" } \
+		Media = { "MediaFileUri" : mediaUri } \
 		)
+		# , \
+		#	Settings = { "VocabularyName" : "MyVocabulary" }
 	
 	# return the response structure found in the Transcribe Documentation
 	return response

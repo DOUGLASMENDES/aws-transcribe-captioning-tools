@@ -27,4 +27,7 @@ REM
 REM ==================================================================================
 
 cls
-python translatevideo.py -region us-east-1 -inbucket robdac-aiml-test/ -infile AWS_reInvent_2017.mp4 -outbucket robdac-aiml-test/ -outfilename subtitledVideo -outfiletype mp4 -outlang es de
+REM python translatevideo.py -region us-east-1 -inbucket robdac-aiml-test/ -infile AWS_reInvent_2017.mp4 -outbucket robdac-aiml-test/ -outfilename subtitledVideo -outfiletype mp4 -outlang es de
+REM python translatevideo.py -region us-east-2 -inbucket translate-videos-dmendes/ -infile Get_Loops_Get_Insights.mp4 -outbucket translate-videos-dmendes/ -outfilename subtitledVideo -outfiletype mp4 -outlang pt-BR
+python translatevideo_douglas.py -region us-east-2 -inbucket translate-videos-dmendes/ -infile Get_Loops_Get_Insights.mp4 -outbucket translate-videos-dmendes/ -outfilename subtitledVideo -outfiletype mp4 -inlang he-IL -outlang pt-BR
+ 

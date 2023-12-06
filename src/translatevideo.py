@@ -83,7 +83,8 @@ transcript = getTranscript( str(response["TranscriptionJob"]["Transcript"]["Tran
 
 # Create the SRT File for the original transcript and write it out.  
 writeTranscriptToSRT( transcript, 'en', "subtitles-en.srt" )  
-createVideo( args.infile, "subtitles-en.srt", args.outfilename + "-en." + args.outfiletype, "audio-en.mp3", True)
+# TODO: A LINHA ABAIXO ESTÁ COM ERRO (PROVAVALMENTE PRECISA PATH COMPLETO ARQUIVO SRT FILE, Ñ ESTÁ ASSIM)
+#createVideo( args.infile, "subtitles-en.srt", args.outfilename + "-en." + args.outfiletype, "audio-en.mp3", True)
 
 
 # Now write out the translation to the transcript for each of the target languages
@@ -94,7 +95,7 @@ for lang in args.outlang:
 	createAudioTrackFromTranslation( args.region, transcript, 'en', lang, "audio-" + lang + ".mp3" )
 	
 	# Finally, create the composited video
-	createVideo( args.infile, "subtitles-" + lang + ".srt", args.outfilename + "-" + lang + "." + args.outfiletype, "audio-" + lang + ".mp3", False)
+	#createVideo( args.infile, "subtitles-" + lang + ".srt", args.outfilename + "-" + lang + "." + args.outfiletype, "audio-" + lang + ".mp3", False)
 	
 	
 

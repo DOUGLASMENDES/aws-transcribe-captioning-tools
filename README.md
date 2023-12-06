@@ -2,6 +2,36 @@
 
 > Add subtitles to video with AWS machine learning services. Inlcuding AWS Polly, AWS Transcribe, and AWS Translate.
 
+## Douglas - Modo de Usar:
+
+- Baixe o vídeo do youtube no link: https://yt2k.com/en4
+- Coloque o vídeo na pasta srt 
+- Suba o video do youtube no s3://translate-videos-dmendes/
+- Inicie um terminal com a versão python 2.7 (via anaconda e pipenv shell)
+```shell
+pip install pipenv
+```
+```shell
+pipenv --python 2.7
+```
+```shell
+pipenv shell
+```
+```shell
+pipenv install -r requirements.txt
+```
+- Execute o arquivo makevideo.bat ajustando os paremetros ou chame diretamente o script:
+```shell
+python translatevideo_douglas.py -region us-east-2 -inbucket translate-videos-dmendes/ -infile nome_arquivo.mp4 -outbucket translate-videos-dmendes/ -outfilename subtitledVideo -outfiletype mp4 -inlang he-IL -outlang pt-BR
+
+```
+A lista de linguagens disponíveis está ([aqui](https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html?icmpid=docs_console_unmapped))
+
+
+- Para gerar um arquivo de áudio em portugues use o arquivo de script translatevideo.py
+- A criação do video náo está funcionando (ver TODO no arquivo translatevideo.py)
+
+
 ## Overview
 This repository contains code for VOD subtitle creation, described in the AWS blog post [“Create video subtitles with translation using machine learning”](https://aws.amazon.com/blogs/machine-learning/create-video-subtitles-with-translation-using-machine-learning/).
 
