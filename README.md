@@ -4,6 +4,8 @@
 
 ## Douglas - Modo de Usar:
 
+- VÍDEOS NÃO PODEM TER MAIS QUE 10 MINUTOS (MELHORAR ISSO!) -> dividir video e fazer em sequencia, no final unir tudo
+
 - Baixe o vídeo do youtube no link: https://yt2k.com/en4
 - Coloque o vídeo na pasta srt 
 - Suba o video do youtube no s3://translate-videos-dmendes/
